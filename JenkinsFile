@@ -1,0 +1,35 @@
+pipeline{
+    agent any
+    tools{
+        maven "MavenTool"
+    }
+
+    stages {
+
+        stage("Build Maven"){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/johnnyArrudaObj/springboot-docker-mongo']])
+
+                sh 'mvn clean install'
+            }
+        }
+        stage("Build docker image"){
+            steps{
+                script{
+                    sh "docker build -t johnnysilva1995str/customerapi ."
+                }
+            }
+        }
+        stage("Push image to Hub"){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                        sh 'docker login -u johnnysilva1995str -p ${dockerhubpwd}'
+
+                        sh 'docker push johnnysilva1995str/customerapi'
+                    }
+                }
+            }
+        }
+    }
+}
