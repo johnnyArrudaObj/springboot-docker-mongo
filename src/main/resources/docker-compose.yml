@@ -6,7 +6,7 @@ services:
     ports:
       - 27017:27017
   customerapi:
-    image: customerapi:latest
+    image: johnnysilva1995str/customerapi:latest
     container_name: "customerapi"
     ports:
       - 9090:8080
