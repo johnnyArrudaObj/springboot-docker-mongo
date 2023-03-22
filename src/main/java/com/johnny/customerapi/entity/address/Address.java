@@ -1,5 +1,14 @@
 package com.johnny.customerapi.entity.address;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Document("address")
 public class Address {
     private String street;
     private String neighborhood;

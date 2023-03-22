@@ -1,21 +1,21 @@
 package com.johnny.customerapi.entity.address;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public record AddressDTO(
-        @NotBlank
+        @NotBlank(message = "Street cannot be null")
         String street,
-        @NotBlank
+        @NotBlank(message = "Neighborhood cannot be null")
         String neighborhood,
-        @NotBlank
+        @NotBlank(message = "Zipcode cannot be null")
         @Pattern(regexp = "\\d{8}")
         String zipcode,
-        @NotBlank
+        @NotBlank(message = "City cannot be null")
         String city,
-        @NotBlank
+        @NotBlank(message = "State cannot be null")
         String state,
-        @NotBlank
+        @NotBlank(message = "Number cannot be null")
         String number,
         String complement) {
 }

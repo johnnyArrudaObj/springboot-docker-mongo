@@ -4,18 +4,18 @@ import com.johnny.customerapi.entity.specialty.Specialty;
 import com.johnny.customerapi.entity.address.Address;
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@EqualsAndHashCode(of = "id")
 @Document("customer")
 public class Customer {
     @Id
-    private Integer id;
+    private String id;
     private String name;
+    @Indexed(unique = true)
     private String cpf;
     private Specialty specialty;
     private Address address;
