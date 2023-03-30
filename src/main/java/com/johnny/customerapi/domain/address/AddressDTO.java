@@ -1,4 +1,4 @@
-package com.johnny.customerapi.entity.address;
+package com.johnny.customerapi.domain.address;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -9,7 +9,7 @@ public record AddressDTO(
         @NotBlank(message = "Neighborhood cannot be null")
         String neighborhood,
         @NotBlank(message = "Zipcode cannot be null")
-        @Pattern(regexp = "\\d{8}")
+        @Pattern(regexp = "\\d{8}", message = "Invalid ZipCode")
         String zipcode,
         @NotBlank(message = "City cannot be null")
         String city,

@@ -1,4 +1,4 @@
-package com.johnny.customerapi.entity.address;
+package com.johnny.customerapi.domain.address;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

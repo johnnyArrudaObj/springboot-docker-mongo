@@ -1,7 +1,7 @@
-package com.johnny.customerapi.entity.customer;
+package com.johnny.customerapi.domain.customer;
 
-import com.johnny.customerapi.entity.address.AddressDTO;
-import com.johnny.customerapi.entity.specialty.Specialty;
+import com.johnny.customerapi.domain.address.AddressDTO;
+import com.johnny.customerapi.domain.specialty.Specialty;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ public record CustomerDTO(
         @NotBlank(message = "Name cannot be null")
         String name,
         @NotBlank(message = "Cpf cannot be null")
-        @Pattern(regexp = "[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}")
+        @Pattern(regexp = "[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}", message = "Invalid Cpf")
         String cpf,
         @NotNull(message = "Specialty cannot be null")
         Specialty specialty,

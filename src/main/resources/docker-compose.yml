@@ -16,7 +16,7 @@ services:
     depends_on:
       - mongo
   customerapi:
-    image: johnnysilva1995str/customerapi:latest
+    image: customerapi
     container_name: "customerapi"
     ports:
       - "9090:8080"

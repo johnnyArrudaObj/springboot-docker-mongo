@@ -1,7 +1,7 @@
-package com.johnny.customerapi.entity.customer;
+package com.johnny.customerapi.domain.customer;
 
-import com.johnny.customerapi.entity.address.Address;
-import com.johnny.customerapi.entity.specialty.Specialty;
+import com.johnny.customerapi.domain.address.Address;
+import com.johnny.customerapi.domain.specialty.Specialty;
 
 public record CustomerGetDTO(String id, String name, Specialty specialty, Address address) {
 

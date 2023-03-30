@@ -1,8 +1,8 @@
 package com.johnny.customerapi.service;
 
-import com.johnny.customerapi.entity.customer.Customer;
-import com.johnny.customerapi.entity.customer.CustomerGetDTO;
-import com.johnny.customerapi.exceptions.CustomerNotFoundException;
+import com.johnny.customerapi.domain.customer.Customer;
+import com.johnny.customerapi.domain.customer.CustomerGetDTO;
+import com.johnny.customerapi.infra.exceptions.CustomerNotFoundException;
 import com.johnny.customerapi.repository.CustomerRepositoryMongoDb;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +33,13 @@ public class CustomerService {
             throw new CustomerNotFoundException("Customer not with this id: " + id);
         }
         return customerGetDTO;
+    }
+
+    public void delete(String id) throws CustomerNotFoundException {
+        var customer = customerRepository.findById(id);
+        if (customer.isEmpty()) {
+            throw new CustomerNotFoundException("Customer not with this id: " + id);
+        }
+        customerRepository.deleteById(id);
     }
 }

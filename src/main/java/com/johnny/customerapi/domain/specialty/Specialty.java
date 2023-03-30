@@ -1,4 +1,4 @@
-package com.johnny.customerapi.entity.specialty;
+package com.johnny.customerapi.domain.specialty;
 
 public enum Specialty {
     BACKEND,
