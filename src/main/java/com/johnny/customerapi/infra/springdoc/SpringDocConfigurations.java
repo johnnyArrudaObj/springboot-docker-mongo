@@ -18,7 +18,7 @@ public class SpringDocConfigurations {
                         .addSecuritySchemes("bearer-key",
                                 new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")))
                 .info(new Info()
-                        .title("Voll.med API")
+                        .title("POC Spring by Johnny Silva")
                         .description("API Rest create customer with mongoDb, Jenkis, JWT, Swagger")
                         .contact(new Contact()
                                 .name("Johnny Silva")
