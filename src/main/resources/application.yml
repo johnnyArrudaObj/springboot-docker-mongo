@@ -5,6 +5,28 @@ spring:
       host: mongo
       port: 27017
 
+  sql:
+    init:
+      mode: always
+
+  datasource:
+    url: jdbc:h2:mem:banco
+    driverClassName: org.h2.Driver
+    username: admin
+    password: 123
+
+  h2:
+    console:
+      path: /h2
+      enabled: true
+      settings:
+        web-allow-others: true
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    show-sql: true
+
   kafka:
     consumer:
       bootstrap-servers: kafka:9092
@@ -15,3 +37,37 @@ spring:
 
 topic:
   customer: customer
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+#CIRCUIT BREAKER CONFIG
+resilience4j:
+  circuitbreaker:
+    instances:
+      addressService:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50 #Taxa em % para mudar estado p/ aberto
+        minimumNumberOfCalls: 5 #Request
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s #Tempo que fica meio aberto
+        permittedNumberOfCallsInHalfOpenState: 3 #Tentativas no meio aberto
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+
+
+retry:
+  instances:
+    addressService:
+      maxRetryAttempts: 5
+      waitDuration: 10s

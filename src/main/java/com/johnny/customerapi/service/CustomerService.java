@@ -2,14 +2,16 @@ package com.johnny.customerapi.service;
 
 import com.johnny.customerapi.domain.customer.Customer;
 import com.johnny.customerapi.domain.customer.CustomerGetDTO;
+import com.johnny.customerapi.domain.customer.CustomerUpdateDTO;
 import com.johnny.customerapi.infra.exceptions.CustomerNotFoundException;
-import com.johnny.customerapi.repository.CustomerRepositoryMongoDb;
+import com.johnny.customerapi.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -17,7 +19,7 @@ import java.util.Optional;
 public class CustomerService {
 
     @Autowired
-    private final CustomerRepositoryMongoDb customerRepository;
+    private final CustomerRepository customerRepository;
 
     public Page<CustomerGetDTO> getCustomers(Pageable pageable) {
         return customerRepository.findAll(pageable).map(CustomerGetDTO::new);
@@ -41,5 +43,16 @@ public class CustomerService {
             throw new CustomerNotFoundException("Customer not with this id: " + id);
         }
         customerRepository.deleteById(id);
+    }
+
+    public Customer update(String id, CustomerUpdateDTO customerUpdateDTO) throws CustomerNotFoundException {
+        Customer customerFound = customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException("Customer not with this id: " + id));
+        customerFound.updateData(customerUpdateDTO);
+        customerRepository.save(customerFound);
+        return customerFound;
+    }
+
+    public List<Customer> getCustomersWithoutAddress() {
+        return customerRepository.getCustomersWithoutAddress(false);
     }
 }

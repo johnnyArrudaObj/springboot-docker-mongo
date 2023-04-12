@@ -15,7 +15,6 @@ public class Address {
     private String zipcode;
     private String city;
     private String state;
-    private String number;
     private String complement;
 
     public Address(AddressDTO addressDTO) {
@@ -24,7 +23,27 @@ public class Address {
         this.zipcode = addressDTO.zipcode();
         this.city = addressDTO.city();
         this.state = addressDTO.state();
-        this.number = addressDTO.number();
         this.complement = addressDTO.complement();
+    }
+
+    public void updateData(AddressDTO addressDTO) {
+        if (addressDTO.street()  != null) {
+            this.street = addressDTO.street();
+        }
+        if (addressDTO.neighborhood()  != null) {
+            this.neighborhood = addressDTO.neighborhood();
+        }
+        if (addressDTO.zipcode()  != null) {
+            this.zipcode = addressDTO.zipcode();
+        }
+        if (addressDTO.city()  != null) {
+            this.city = addressDTO.city();
+        }
+        if (addressDTO.state()  != null) {
+            this.state = addressDTO.state();
+        }
+        if (addressDTO.complement()  != null) {
+            this.complement = addressDTO.complement();
+        }
     }
 }

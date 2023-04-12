@@ -18,8 +18,8 @@ services:
       - mongo
 
   customerapi:
-    image: johnnysilva1995str/customerapi:latest
-    container_name: "customerapi"
+    image: customerapi
+    container_name: "johnnysilva1995str/customerapi"
     ports:
       - "9090:8080"
     links:

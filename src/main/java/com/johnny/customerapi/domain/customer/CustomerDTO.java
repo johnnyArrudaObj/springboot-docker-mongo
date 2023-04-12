@@ -1,5 +1,6 @@
 package com.johnny.customerapi.domain.customer;
 
+import com.johnny.customerapi.domain.address.Address;
 import com.johnny.customerapi.domain.address.AddressDTO;
 import com.johnny.customerapi.domain.specialty.Specialty;
 import jakarta.validation.Valid;

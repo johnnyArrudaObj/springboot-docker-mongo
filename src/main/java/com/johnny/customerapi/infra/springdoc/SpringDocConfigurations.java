@@ -24,7 +24,6 @@ public class SpringDocConfigurations {
                                 .name("Johnny Silva")
                                 .email("johnny@johnny.com.br"))
                         .license(new License()
-                                .name("Apache 2.0")
-                                .url("http://voll.med/api/licenca")));
+                                .name("Apache 2.0")));
     }
 }
